@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cycas.analyse.biz.mapper.InHospitalMapper">
+
+    <!-- 违规明细结果列 -->
+    <sql id="Base_Column_List_Illegal">
+        h.settle_no,
+        h.medical_org_code,
+        h.medical_org_name,
+        h.settle_date,
+        h.person_code,
+        h.society_security_no,
+        h.hospital_no,
+        h.insurance_type,
+        h.person_type,
+        h.leave_hospital_department,
+        h.doctor_in_charge_name,
+        h.patients_name,
+        h.patients_age,
+        h.patients_sex,
+        h.in_hospital_date,
+        h.leave_hospital_date,
+        h.in_hospital_days,
+        h.hospitalization_costs,
+        h.basic_whole_pay,
+        h.serious_illness_insurance,
+        h.medical_help,
+        h.civil_medical_subsidy,
+        h.large_subsidy,
+        h.company_subsidy,
+        h.leave_hospital_diagnosis_name,
+        h.leave_hospital_diagnosis_code,
+        detail.hospital_project_name,
+        detail.reimbursement_ratio,
+        detail.pay_category,
+        sum(detail.amount) amount,
+        sum(detail.money) money
+    </sql>
+
+    <select id="listIllegalDetail" resultType="com.cycas.analyse.biz.model.dto.IllegalDetailDTO">
+        SELECT
+        <include refid="Base_Column_List_Illegal" />
+        FROM `in_hospital` h
+        INNER JOIN in_hospital_detail detail ON detail.settle_no = h.settle_no
+        WHERE h.import_uuid = #{importUuid}
+        AND detail.import_uuid = #{detailImportUuid}
+        AND detail.hospital_project_name = #{hospitalProjectName}
+        group by h.settle_no
+    </select>
+
+</mapper>
