@@ -17,8 +17,6 @@ import java.util.Date;
  * @since 2024/7/24 15:22
  */
 @Data
-@HeadFontStyle(fontHeightInPoints = 10) // 头字体设置
-@ContentFontStyle(fontHeightInPoints = 10) // 内容字体设置
 public class IllegalDetailExportExcelBO implements Serializable {
 
     @ExcelProperty(value = "结算单据号", index = 0)

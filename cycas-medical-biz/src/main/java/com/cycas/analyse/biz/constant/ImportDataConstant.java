@@ -13,8 +13,9 @@ public class ImportDataConstant {
     public static final Integer IMPORT_RECORD_TYPE_DETAIL = 2;
 
     /**
-     * 导入状态 -1:失败 0:待处理 1:处理中 2:成功
+     * 导入状态 -1:失败 0:待处理 1:处理中 2:部分成功 3:全部成功
      */
     public static final Integer IMPORT_RECORD_STATUS_FAILURE = -1;
-    public static final Integer IMPORT_RECORD_STATUS_SUCCESS = 2;
+    public static final Integer IMPORT_RECORD_STATUS_PART_SUCCESS = 2;
+    public static final Integer IMPORT_RECORD_STATUS_SUCCESS = 3;
 }

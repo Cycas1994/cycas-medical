@@ -1,5 +1,6 @@
 package com.cycas.analyse.biz.model.bo;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;
 
@@ -93,13 +94,13 @@ public class InHospitalDetailImportExcelBO implements Serializable {
     private Integer amount;
 
     @ExcelProperty(value = "金额")
-    private BigDecimal money;
+    private String money;
 
     @ExcelProperty(value = "拒付金额")
-    private BigDecimal refusePayMoney;
+    private String refusePayMoney;
 
     @ExcelProperty(value = "医保范围内金额")
-    private BigDecimal medicareInsideMoney;
+    private String medicareInsideMoney;
 
     @ExcelProperty(value = "支付类别")
     private String payCategory;
@@ -107,4 +108,18 @@ public class InHospitalDetailImportExcelBO implements Serializable {
     @ExcelProperty(value = "报销比例")
     private String reimbursementRatio;
 
+    @ExcelIgnore
+    private boolean failFlag;
+
+    @ExcelIgnore
+    private String failureReason;
+
+    @ExcelIgnore
+    private long rowNum;
+
+    public void markFailure(long rowNum, String failureReason) {
+        this.failFlag = true;
+        this.failureReason = failureReason;
+        this.rowNum = rowNum;
+    }
 }

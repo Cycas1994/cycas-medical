@@ -1,6 +1,6 @@
 package com.cycas.analyse.biz.controller;
 
-import com.cycas.analyse.biz.service.ImportDataService;
+import com.cycas.analyse.biz.service.impl.ImportDataService;
 import com.cycas.common.biz.model.vo.RInfoVO;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +25,8 @@ public class ImportDataController {
 
     @ApiOperation("住院主表文件导入")
     @PostMapping("/inHospital/import")
-    public RInfoVO<Boolean> inHospitalImport(@RequestParam("file") MultipartFile file) {
-        importDataService.inHospitalImport(file);
-        return RInfoVO.ok(true);
+    public RInfoVO<String> inHospitalImport(@RequestParam("file") MultipartFile file) {
+        return RInfoVO.ok(importDataService.inHospitalImport(file));
     }
 
     @ApiOperation("住院明细表文件导入")

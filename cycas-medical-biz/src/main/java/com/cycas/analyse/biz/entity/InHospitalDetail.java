@@ -208,9 +208,9 @@ public class InHospitalDetail implements Serializable {
                 .setChargeUnit(bo.getChargeUnit())
                 .setUnitPrice(bo.getUnitPrice())
                 .setAmount(bo.getAmount())
-                .setMoney(bo.getMoney())
-                .setRefusePayMoney(bo.getRefusePayMoney())
-                .setMedicareInsideMoney(bo.getMedicareInsideMoney())
+                .setMoney(new BigDecimal(bo.getMoney()))
+                .setRefusePayMoney(new BigDecimal(bo.getRefusePayMoney()))
+                .setMedicareInsideMoney(new BigDecimal(bo.getMedicareInsideMoney()))
                 .setPayCategory(bo.getPayCategory())
                 .setReimbursementRatio(bo.getReimbursementRatio());
     }

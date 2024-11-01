@@ -8,8 +8,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.util.Date;
 
-import static com.cycas.analyse.biz.constant.ImportDataConstant.IMPORT_RECORD_STATUS_FAILURE;
-import static com.cycas.analyse.biz.constant.ImportDataConstant.IMPORT_RECORD_STATUS_SUCCESS;
+import static com.cycas.analyse.biz.constant.ImportDataConstant.*;
 
 /**
  * @author xin.na
@@ -53,6 +52,11 @@ public class ImportRecord implements Serializable {
     private Long totalNum;
 
     /**
+     * 失败数
+     */
+    private Long failureNum;
+
+    /**
      * 失败原因
      */
     private String failureReason;
@@ -67,9 +71,10 @@ public class ImportRecord implements Serializable {
      */
     private Date updateTime;
 
-    public void markSuccess(Long totalNum) {
-        this.status = IMPORT_RECORD_STATUS_SUCCESS;
+    public void markSuccess(Long totalNum, Long failureNum) {
         this.totalNum = totalNum;
+        this.failureNum = failureNum;
+        this.status = failureNum == 0 ? IMPORT_RECORD_STATUS_SUCCESS : IMPORT_RECORD_STATUS_PART_SUCCESS;
     }
 
     public void markFailure(String failureReason) {

@@ -35,6 +35,7 @@ public class ImportRecordManager {
         ImportRecord update = new ImportRecord()
                 .setStatus(importRecord.getStatus())
                 .setTotalNum(importRecord.getTotalNum())
+                .setFailureNum(importRecord.getFailureNum())
                 .setFailureReason(importRecord.getFailureReason());
         mapper.update(update, Wrappers.<ImportRecord>lambdaUpdate()
                 .eq(ImportRecord::getUuid, importRecord.getUuid()));
